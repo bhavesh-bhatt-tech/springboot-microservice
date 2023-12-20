@@ -20,7 +20,7 @@ public class EmployeeRepository {
 
 	private static final Logger log = LoggerFactory.getLogger(EmployeeRepository.class);
 
-	List<Employee> employeeList = new ArrayList<Employee>();
+	List<Employee> employeeList = new ArrayList<>();
 
 	public Employee add(Employee employee) {
 		log.info("EmployeeRepository add");

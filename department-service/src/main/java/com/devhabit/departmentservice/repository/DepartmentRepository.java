@@ -5,6 +5,7 @@ package com.devhabit.departmentservice.repository;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -28,12 +29,11 @@ public class DepartmentRepository {
 		return department;
 	}
 	
-	public Department findById(Long id) {
+	public Optional<Department> findById(Long id) {
 		log.info("DepartmentRepository findById");
 		return departments.stream()
 				.filter(a -> a.getId().equals(id))
-				.findFirst()
-				.orElseThrow();
+				.findFirst();
 	}
 	
 	public List<Department> findAll() {

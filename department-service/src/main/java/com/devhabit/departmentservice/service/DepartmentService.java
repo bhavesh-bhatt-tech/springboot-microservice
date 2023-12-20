@@ -4,10 +4,10 @@
 package com.devhabit.departmentservice.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.devhabit.departmentservice.model.Department;
@@ -21,12 +21,18 @@ import com.devhabit.departmentservice.service.client.EmployeeClient;
 public class DepartmentService {
 
 	private static final Logger log = LoggerFactory.getLogger(DepartmentService.class);
-	
-	@Autowired
+
 	DepartmentRepository repository;
 	
-	@Autowired 
-	EmployeeClient employeeClient;
+	private final EmployeeClient employeeClient;
+	
+	/**
+	 * 
+	 */
+	public DepartmentService(DepartmentRepository deptRepo,EmployeeClient empClient) {
+		this.repository = deptRepo;
+		this.employeeClient = empClient;
+	}
 	
 	public Department save(Department department) {
 		log.info("Department save");
@@ -38,8 +44,11 @@ public class DepartmentService {
 	 * @return
 	 */
 	public Department findById(Long id) {
-		log.info("Department Service findById");		
-		return repository.findById(id);
+		log.info("Department Service findById");
+		Optional<Department> dept = repository.findById(id);
+		if(dept.isPresent()) 
+			return dept.get(); 
+		else return null;
 	}
 
 	/**

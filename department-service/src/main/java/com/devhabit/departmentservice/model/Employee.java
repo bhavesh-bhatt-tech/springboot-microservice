@@ -3,7 +3,6 @@
  */
 package com.devhabit.departmentservice.model;
 
-import java.util.Date;
 import java.util.Objects;
 
 /**
@@ -11,21 +10,13 @@ import java.util.Objects;
  */
 public class Employee {
 
-	private long id;
+	private Long id;
+	private Long departmentId;
 	private String firstName;
 	private String middleName;	
 	private String lastName;
 	private String dateOfBirth;
 	
-	
-	/**
-	 * @return the id
-	 */
-	public long getId() {
-		return id;
-	}
-
-
 	@Override
 	public int hashCode() {
 		return Objects.hash(dateOfBirth, firstName, lastName, middleName);
@@ -46,11 +37,37 @@ public class Employee {
 	}
 
 
+	
+
+	/**
+	 * @return the id
+	 */
+	public Long getId() {
+		return id;
+	}
+
+
 	/**
 	 * @param id the id to set
 	 */
-	public void setId(long id) {
+	public void setId(Long id) {
 		this.id = id;
+	}
+
+
+	/**
+	 * @return the departmentId
+	 */
+	public Long getDepartmentId() {
+		return departmentId;
+	}
+
+
+	/**
+	 * @param departmentId the departmentId to set
+	 */
+	public void setDepartmentId(Long departmentId) {
+		this.departmentId = departmentId;
 	}
 
 

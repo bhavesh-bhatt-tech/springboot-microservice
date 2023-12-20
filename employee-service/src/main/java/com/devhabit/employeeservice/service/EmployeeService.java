@@ -7,9 +7,7 @@ import java.util.List;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import com.devhabit.departmentservice.model.Employee;
 import com.devhabit.employeeservice.repository.EmployeeRepository;
 
@@ -21,10 +19,15 @@ public class EmployeeService {
 
 	private static final Logger log = LoggerFactory.getLogger(EmployeeService.class);
 	
-	@Autowired
-	EmployeeRepository employeeRepository;
 	
-
+	private final EmployeeRepository employeeRepository;
+	
+	/**
+	 * 
+	 */
+	public EmployeeService(EmployeeRepository empRepo) {
+		this.employeeRepository = empRepo;
+	}
 	
 	/**
 	 * @param employee

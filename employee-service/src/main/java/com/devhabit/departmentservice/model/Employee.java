@@ -13,6 +13,16 @@ public class Employee {
 	private String firstName;
 	private String lastName;
 	private String dateOfBirth;
+	
+	/**
+	 * 
+	 */
+	public Employee(Long id, String firstName, String lastName) {
+		this.id = id;
+		this.firstName = firstName;
+		this.lastName = lastName;
+		
+	}
 	/**
 	 * @return the id
 	 */

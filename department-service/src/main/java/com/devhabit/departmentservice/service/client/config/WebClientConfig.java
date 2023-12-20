@@ -4,7 +4,6 @@
 package com.devhabit.departmentservice.service.client.config;
 
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.client.loadbalancer.reactive.LoadBalancedExchangeFilterFunction;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -25,11 +24,15 @@ import reactor.netty.http.client.HttpClient;
 @Configuration
 public class WebClientConfig {
 
-	@Autowired
-	private LoadBalancedExchangeFilterFunction filter;
 	
-	@Bean
-	public WebClient employeeWebClient() {
+	private final LoadBalancedExchangeFilterFunction filter;
+	
+	public  WebClientConfig(LoadBalancedExchangeFilterFunction filter) {		
+		this.filter = filter;
+	}
+
+    @Bean
+    WebClient employeeWebClient() {
 		return WebClient.builder().clientConnector(new ReactorClientHttpConnector(
                         HttpClient.create()
                                 .resolver(DefaultAddressResolverGroup.INSTANCE)))
@@ -39,10 +42,10 @@ public class WebClientConfig {
 	}
 	
 	@Bean 
-	public EmployeeClient employeeClient() {
+	EmployeeClient employeeClient() {
 		
 		HttpServiceProxyFactory proxyFactory = HttpServiceProxyFactory.builder(
-				WebClientAdapter.forClient(employeeWebClient())
+				WebClientAdapter.create(employeeWebClient())
 				).build();
 		return proxyFactory.createClient(EmployeeClient.class);
 	}

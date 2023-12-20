@@ -7,15 +7,14 @@ import java.util.List;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
 import com.devhabit.departmentservice.model.Employee;
-import com.devhabit.employeeservice.repository.EmployeeRepository;
 import com.devhabit.employeeservice.service.EmployeeService;
 
 /**
@@ -27,12 +26,17 @@ import com.devhabit.employeeservice.service.EmployeeService;
 public class EmployeeController {
 
 	private static final Logger log = LoggerFactory.getLogger(EmployeeController.class);
+		
+	private final EmployeeService employeeService;
+
 	
-	@Autowired
-	EmployeeRepository EmployeeRepository;
-	
-	@Autowired
-	EmployeeService employeeService;
+	/**
+	 * @param employeeService
+	 */
+	public EmployeeController(EmployeeService employeeService) {
+		super();
+		this.employeeService = employeeService;
+	}
 	
 	@PostMapping("/add")
 	public Employee add(@RequestBody Employee Employee) {
