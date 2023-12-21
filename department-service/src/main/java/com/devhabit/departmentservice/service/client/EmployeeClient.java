@@ -3,13 +3,12 @@
  */
 package com.devhabit.departmentservice.service.client;
 
-import java.util.List;
+import java.util.Map;
 
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.service.annotation.GetExchange;
 import org.springframework.web.service.annotation.HttpExchange;
-
-import com.devhabit.departmentservice.model.Employee;
 
 /**
  * Declarative client
@@ -17,5 +16,5 @@ import com.devhabit.departmentservice.model.Employee;
 @HttpExchange
 public interface EmployeeClient {
 	@GetExchange("/employee/department/{departmentId}")
-	public List<Employee> findByDepartmentId(@PathVariable("departmentId") Long departmentId);
+	public ResponseEntity<Map<String, Object>> findByDepartmentId(@PathVariable("departmentId") Long departmentId);
 }

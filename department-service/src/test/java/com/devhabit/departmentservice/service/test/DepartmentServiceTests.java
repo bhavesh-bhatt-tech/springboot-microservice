@@ -7,7 +7,9 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.mockito.Mockito.when;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 import org.junit.jupiter.api.Test;
@@ -17,6 +19,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 
 import com.devhabit.departmentservice.model.Department;
 import com.devhabit.departmentservice.model.Employee;
@@ -118,6 +122,13 @@ class DepartmentServiceTests {
 		List<Employee> dept2EmployeeList = new ArrayList<Employee>();
 		List<Employee> dept3EmployeeList = new ArrayList<Employee>();
 		List<Employee> dept4EmployeeList = new ArrayList<Employee>();		
+		HashMap map1 = new HashMap();
+		HashMap map2 = new HashMap();
+		map1.put("data", dept1EmployeeList);
+		map2.put("data", dept2EmployeeList);
+
+		ResponseEntity<Map<String, Object>>  response1 =  new ResponseEntity<>(map1,HttpStatus.OK);
+		ResponseEntity<Map<String, Object>>  response2 =  new ResponseEntity<>(map2,HttpStatus.OK);
 
 		createEmployees(dept1EmployeeList, dept2EmployeeList, dept3EmployeeList, dept4EmployeeList);
 		// set employee list
@@ -126,8 +137,8 @@ class DepartmentServiceTests {
 		
 		// mocking the employee microservice call within findAllDepartmentEmployees method of department service
 		when(departmentRepository.findAll()).thenReturn(reqDeptList);
-		when(employeeClient.findByDepartmentId(1L)).thenReturn(dept1EmployeeList);			
-		when(employeeClient.findByDepartmentId(2L)).thenReturn(dept2EmployeeList);
+		when(employeeClient.findByDepartmentId(1L)).thenReturn(response1);			
+		when(employeeClient.findByDepartmentId(2L)).thenReturn(response2);
 			
 		List<Department> deptList = departmentService.findAllDepartmentEmployees();
 		
@@ -168,30 +179,16 @@ class DepartmentServiceTests {
 			List<Employee> dept3EmployeeList, List<Employee> dept4EmployeeList) {
 		log.info("createEmployees started");				
 
-		Employee e1 = new Employee();
-		e1.setDepartmentId(1L);
-		e1.setFirstName("Tara");
-		e1.setLastName("Singh");
-
-		Employee e2 = new Employee();
-		e2.setDepartmentId(1L);
-		e2.setFirstName("Vicky");
-		e2.setLastName("Malhotra");
+		Employee e1 = new Employee(1L,"Tara","Singh");
 		
-		Employee e3 = new Employee();
-		e3.setDepartmentId(2L);
-		e3.setFirstName("Nakul");
-		e3.setLastName("Sahani");
 
-		Employee e4 = new Employee();
-		e4.setDepartmentId(3L);
-		e4.setFirstName("Kishan");
-		e4.setLastName("Pathak");
+		Employee e2 = new Employee(1L,"Vicky","Malhotra");
 		
-		Employee e5 = new Employee();
-		e5.setDepartmentId(4L);
-		e5.setFirstName("Allen");
-		e5.setLastName("Border");
+		Employee e3 = new Employee(2L,"Nakul","Sahani");
+
+		Employee e4 = new Employee(3L,"Kishan","Pathak");
+		
+		Employee e5 = new Employee(4L,"Allen","Border");
 		
 		dept1EmployeeList.add(e1);
 		dept1EmployeeList.add(e2);

@@ -4,11 +4,13 @@
 package com.devhabit.employeeservice.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
-import com.devhabit.departmentservice.model.Employee;
+
+import com.devhabit.employeeservice.model.Employee;
 import com.devhabit.employeeservice.repository.EmployeeRepository;
 
 /**
@@ -44,8 +46,12 @@ public class EmployeeService {
 	 * @return
 	 */
 	public Employee findById(Long id) {
-		log.info("Employee Service findById");		
-		return employeeRepository.findById(id);
+		log.info("Employee Service findById");	
+		Optional<Employee> emp = employeeRepository.findById(id);
+		if(emp.isPresent())
+			return emp.get();
+		else 
+			return null;
 	}
 
 	/**

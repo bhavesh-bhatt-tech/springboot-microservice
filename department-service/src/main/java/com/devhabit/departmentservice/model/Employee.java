@@ -17,6 +17,15 @@ public class Employee {
 	private String lastName;
 	private String dateOfBirth;
 	
+	/**
+	 * 
+	 */
+	public Employee(Long id, String firstName, String lastName) {
+		this.id = id;
+		this.firstName = firstName;
+		this.lastName = lastName;
+		
+	}
 	@Override
 	public int hashCode() {
 		return Objects.hash(dateOfBirth, firstName, lastName, middleName);

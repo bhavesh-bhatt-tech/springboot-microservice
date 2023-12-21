@@ -51,7 +51,16 @@ class DeparatmentRepositoryTest {
 	void tearDown() throws Exception {
 		log.info("called after each method call");
 	}
+	@Test
+	void addDepartmentTest() {
+		log.info("addDepartmentTest started");
+		Department d1 = new Department(1, "HR");
+		when(departmentRepository.add(d1)).thenReturn(d1);
+		Department fetchedDept = departmentRepository.add(d1);
+
+		assertEquals(1L,fetchedDept.getId());
 	
+	}
 	@Test
 	void findByIdTest() {
 		log.info("findByIdTest started");

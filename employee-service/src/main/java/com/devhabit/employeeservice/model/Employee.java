@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.devhabit.departmentservice.model;
+package com.devhabit.employeeservice.model;
 
 /**
  * 

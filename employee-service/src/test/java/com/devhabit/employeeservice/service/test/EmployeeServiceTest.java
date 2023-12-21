@@ -9,6 +9,7 @@ import static org.mockito.Mockito.when;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -20,7 +21,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
 
-import com.devhabit.departmentservice.model.Employee;
+import com.devhabit.employeeservice.model.Employee;
 import com.devhabit.employeeservice.repository.EmployeeRepository;
 import com.devhabit.employeeservice.service.EmployeeService;
 
@@ -73,7 +74,7 @@ class EmployeeServiceTest {
 		Employee emp = new Employee(1L,"Niraj","Sharma");
 		employeeService.save(emp);
 		
-		when(employeeRepository.findById(1L)).thenReturn(emp);
+		when(employeeRepository.findById(1L)).thenReturn(Optional.of(emp));
 		
 		Employee fetchedEmp = employeeService.findById(1L);
 		

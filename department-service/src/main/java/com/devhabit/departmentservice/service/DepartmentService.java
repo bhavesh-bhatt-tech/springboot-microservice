@@ -4,13 +4,16 @@
 package com.devhabit.departmentservice.service;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import com.devhabit.departmentservice.model.Department;
+import com.devhabit.departmentservice.model.Employee;
 import com.devhabit.departmentservice.repository.DepartmentRepository;
 import com.devhabit.departmentservice.service.client.EmployeeClient;
 
@@ -67,7 +70,11 @@ public class DepartmentService {
 		// get all departments 
 		List<Department> departmentList = repository.findAll();
 		for (Department department : departmentList) {
-			department.setEmployeeList(employeeClient.findByDepartmentId(department.getId()));
+			ResponseEntity<Map<String, Object>> response = employeeClient.findByDepartmentId(department.getId());
+			Map<String,Object> body = response.getBody();
+			@SuppressWarnings("unchecked")
+			List<Employee> empList = (List<Employee>)body.get("data");
+			department.setEmployeeList(empList);
 		}
 		return departmentList;
 	}

@@ -5,12 +5,13 @@ package com.devhabit.employeeservice.repository;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
 
-import com.devhabit.departmentservice.model.Employee;
+import com.devhabit.employeeservice.model.Employee;
 
 /**
  * 
@@ -28,9 +29,9 @@ public class EmployeeRepository {
 		return employee;
 	}
 
-	public Employee findById(Long id) {
+	public Optional<Employee> findById(Long id) {
 		log.info("EmployeeRepository findById");
-		return employeeList.stream().filter(a -> a.getId().equals(id)).findFirst().orElseThrow();
+		return employeeList.stream().filter(a -> a.getId().equals(id)).findFirst();
 	}
 
 	public List<Employee> findAll() {
