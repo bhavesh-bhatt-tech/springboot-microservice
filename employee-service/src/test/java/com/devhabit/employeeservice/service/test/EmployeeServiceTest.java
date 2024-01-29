@@ -72,7 +72,7 @@ class EmployeeServiceTest {
 	void findByIdTest() {
 		log.info("saveTest started");
 		Employee emp = new Employee(1L,"Niraj","Sharma");
-		employeeService.save(emp);
+		//employeeService.save(emp);
 		
 		when(employeeRepository.findById(1L)).thenReturn(Optional.of(emp));
 		

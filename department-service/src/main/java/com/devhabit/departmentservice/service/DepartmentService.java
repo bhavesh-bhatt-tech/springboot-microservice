@@ -70,10 +70,14 @@ public class DepartmentService {
 		// get all departments 
 		List<Department> departmentList = repository.findAll();
 		for (Department department : departmentList) {
+			List<Employee> empList = null;
+			Map<String,Object> map ; 
 			ResponseEntity<Map<String, Object>> response = employeeClient.findByDepartmentId(department.getId());
-			Map<String,Object> body = response.getBody();
-			@SuppressWarnings("unchecked")
-			List<Employee> empList = (List<Employee>)body.get("data");
+			Optional<Map<String,Object>> body = Optional.ofNullable(response.getBody());
+			if(body.isPresent()) {
+				map = body.get();
+				empList = (List<Employee>)map.get("data");
+			}
 			department.setEmployeeList(empList);
 		}
 		return departmentList;
