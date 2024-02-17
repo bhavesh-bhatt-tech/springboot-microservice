@@ -1,0 +1,142 @@
+version: "3.8"
+
+services:
+    
+    zipkin:
+        image: ghcr.io/openzipkin/zipkin-slim:${TAG:-latest}
+        container_name: zipkin
+        # Environment settings are defined here https://github.com/openzipkin/zipkin/blob/master/zipkin-server/README.md#environment-variables
+        environment:
+            - STORAGE_TYPE=mem
+            # Point the zipkin at the storage backend
+            #- MYSQL_HOST=mysql
+            # Uncomment to enable scribe
+            # - SCRIBE_ENABLED=true
+            # Uncomment to enable self-tracing
+            # - SELF_TRACING_ENABLED=true
+            # Uncomment to enable debug logging
+            # - JAVA_OPTS=-Dlogging.level.zipkin2=DEBUG
+        ports:
+            # Port used for the Zipkin UI and HTTP Api
+            - 9411:9411
+            # Uncomment if you set SCRIBE_ENABLED=true
+            # - 9410:9410
+        networks:
+         - backend
+
+    service-registry:
+        build: ./service-registry/
+        image: bkbdocker/service-registry:latest
+        container_name: service-registry-container
+        environment:
+           - spring.zipkin.base-url=http://zipkin:9411
+
+        ports:
+        - '8761:8761'
+        healthcheck:
+          test: [ "CMD", "curl", "-f", "http://service-registry:8761/actuator/health" ]
+          interval: 10s
+          timeout: 5s
+          retries: 5 
+        deploy:
+            mode: global
+      
+        depends_on: 
+           zipkin:
+            condition: service_healthy
+        networks:
+         - backend
+       
+    config-server:
+        build: ./config-server/
+        image: bkbdocker/config-server:latest
+        container_name: config-server-container
+        environment: 
+        - eureka.client.service-url.defaultZone=http://service-registry:8761/eureka
+
+        ports:
+        - '8088:8088'
+
+        healthcheck:
+          test: [ "CMD", "curl", "-f", "http://config-server:8088/actuator/health" ]
+          interval: 10s
+          timeout: 5s
+          retries: 5 
+          
+        depends_on: 
+           service-registry:
+            condition: service_healthy
+                     
+        networks:
+         - backend
+
+    gateway-server:
+        build: ./gateway-service/
+        image: bkbdocker/gateway-service:latest
+        container_name: gateway-server-container
+        environment:
+           - eureka.client.service-url.defaultZone=http://service-registry:8761/eureka
+           - spring.config.import=optional:configserver:http://config-server:8088
+           - spring.zipkin.base-url=http://zipkin:9411
+
+        ports:
+                - '8061:8061'
+                
+        healthcheck:
+          test: [ "CMD", "curl", "-f", "http://gateway-server:8061/actuator/health" ]
+          interval: 10s
+          timeout: 5s
+          retries: 5 
+                
+        depends_on:
+           service-registry:
+            condition: service_healthy
+           config-server:
+            condition: service_healthy
+
+        networks:
+         - backend
+                
+    department-service:
+        build: ./department-service/
+        image: bkbdocker/department-service:latest
+        container_name: department-service-container
+        environment:
+           - eureka.client.service-url.defaultZone=http://service-registry:8761/eureka
+           - spring.config.import=optional:configserver:http://config-server:8088
+           - spring.zipkin.base-url=http://zipkin:9411
+
+        ports:
+                - '8081:8081'
+        depends_on:
+           service-registry:
+               condition: service_healthy                               
+           gateway-server:
+               condition: service_healthy
+
+        networks:
+         - backend
+           
+    employee-service:
+        build: ./employee-service/
+        image: bkbdocker/employee-service:latest
+        container_name: employee-service-container
+        environment:
+           - eureka.client.service-url.defaultZone=http://service-registry:8761/eureka
+           - spring.config.import=optional:configserver:http://config-server:8088
+           - spring.zipkin.base-url=http://zipkin:9411
+
+        ports:
+             - '8082:8082'
+
+        depends_on:
+           service-registry:
+               condition: service_healthy                               
+           gateway-server:
+               condition: service_healthy
+        networks:
+         - backend
+
+networks:
+  backend:
+    driver: bridge
