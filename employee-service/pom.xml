@@ -6,7 +6,7 @@
 		<groupId>com.devhabit</groupId>
 		<artifactId>springboot3-microservice</artifactId>
 		<version>0.0.1-SNAPSHOT</version>
-		<relativePath/> <!-- lookup parent from repository -->
+		<relativePath>../pom.xml</relativePath> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.devhabit.employeeservice</groupId>
 	<artifactId>employee-service</artifactId>
