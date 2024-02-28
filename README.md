@@ -1,7 +1,17 @@
 
 # Spring boot 3 microservice with Spring cloud
 The project is microservice development using spring boot 3 along with below components
+# Sonar Cloud
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=bhavesh-bhatt-tech_springboot-microservice&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=bhavesh-bhatt-tech_springboot-microservice)
 
+# Github Action 
+![Github workflow](https://github.com/bhavesh-bhatt-tech/springboot-microservice/actions/workflows/build.yml/badge.svg)
+
+# Code Coverage
+[![Coverage](https://sonarcloud.io/api/project_badges/measure?project=bhavesh-bhatt-tech_springboot-microservice&metric=coverage)](https://sonarcloud.io/summary/new_code?id=bhavesh-bhatt-tech_springboot-microservice)
+
+# Bug 
+[![Bugs](https://sonarcloud.io/api/project_badges/measure?project=bhavesh-bhatt-tech_springboot-microservice&metric=bugs)](https://sonarcloud.io/summary/new_code?id=bhavesh-bhatt-tech_springboot-microservice)
 
 ## Features
 
@@ -14,21 +24,19 @@ The project is microservice development using spring boot 3 along with below com
 - Code coverage with Jacoco
 
 
-## Installation
+# Installation
 
-Follow below order of execution to start each service
+## Docker
+go to root directory and execute below command
 
-
-    1. service registry
-    2. config server
-    3. gateway server 
-    4. department service
-    5. employee service
-Go to the respective project directory and execute below command
+```bash
+docker-compose up -d
+```
+## Maven
+Go to the respective project directory in each project and execute below command
 ```bash
 ./mvnw spring-boot:run
 ```
-    
 ## API Reference
 
 #### Add department
@@ -101,7 +109,6 @@ Go to the respective project directory and execute below command
 
 ## Code Coverage
 Run below commands to generate code coverage reports
-
 clean jacoco:prepare-agent install jacoco:report
 
 ## Blog
