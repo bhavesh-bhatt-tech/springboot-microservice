@@ -8,7 +8,7 @@ The project is microservice development using spring boot 3 along with below com
 ![Github workflow](https://github.com/bhavesh-bhatt-tech/springboot-microservice/actions/workflows/build.yml/badge.svg)
 
 # Code Coverage
-[![Coverage](https://sonarcloud.io/api/project_badges/measure?project=bhavesh-bhatt-tech_springboot-microservice&metric=coverage)](https://sonarcloud.io/summary/new_code?id=bhavesh-bhatt-tech_springboot-microservice)
+[![Coverage](https://sonarcloud.io/api/project_badges/measure?project=bhavesh-bhatt-tech_springboot-microservice&metric=coverage)]
 
 # Bug 
 [![Bugs](https://sonarcloud.io/api/project_badges/measure?project=bhavesh-bhatt-tech_springboot-microservice&metric=bugs)](https://sonarcloud.io/summary/new_code?id=bhavesh-bhatt-tech_springboot-microservice)
