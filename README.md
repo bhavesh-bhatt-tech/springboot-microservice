@@ -23,7 +23,6 @@ The project is microservice development using spring boot 3 along with below com
 - Unit testing with Mockito Junit Jupiter
 - Code coverage with Jacoco
 
-
 # Installation
 
 ## Docker
