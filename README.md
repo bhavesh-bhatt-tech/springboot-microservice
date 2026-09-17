@@ -17,7 +17,7 @@ This repository contains a robust, enterprise-grade demonstration of a microserv
   - JUnit 5 & Mockito
   - JaCoCo (Code Coverage)
   - SonarCloud (Static Code Analysis)
-- **Containerization & CI/CD:** Docker, Docker Compose, Google Jib Maven Plugin, GitHub Actions
+- **Containerization & CI/CD:** Docker, Docker Compose, GitHub Actions
 
 ---
 

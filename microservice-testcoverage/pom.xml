@@ -5,9 +5,7 @@
 	    <artifactId>springboot3-microservice</artifactId>
 	    <version>0.0.1-SNAPSHOT</version>
 	  </parent>
-	  <properties>
-        <jib.skip>true</jib.skip>
-      </properties>
+
 	  <artifactId>microservice-testcoverage</artifactId>
 	  <packaging>jar</packaging>
 	  <name>microservice-testcoverage</name>
