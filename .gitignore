@@ -26,3 +26,10 @@ replay_pid*
 *.prefs
 .mvn/wrapper/maven-wrapper.properties
 */target/*
+target/
+
+# IntelliJ IDEA
+.idea/
+*.iml
+*.iws
+*.ipr
