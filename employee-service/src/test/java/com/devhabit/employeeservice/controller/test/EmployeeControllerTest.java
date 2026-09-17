@@ -56,6 +56,7 @@ class EmployeeControllerTest {
 	 */
 	@BeforeEach
 	void setUp() throws Exception {
+        //no setup processing is required
 	}
 
 	/**
@@ -63,6 +64,7 @@ class EmployeeControllerTest {
 	 */
 	@AfterEach
 	void tearDown() throws Exception {
+        //no tearDown processing is required
 	}
 
 	@Test
@@ -95,10 +97,10 @@ class EmployeeControllerTest {
 	@Test
 	void findAllTest() throws Exception {
 		log.info("findAllTest started");
-		Employee Employee = new Employee(1L, "Sumeet","Shah");		
-		Employee Employee2 = new Employee(1L, "Chirag","Maru");
-		employeeList.add(Employee);
-		employeeList.add(Employee2);
+		Employee employee = new Employee(1L, "Sumeet","Shah");
+		Employee employee2 = new Employee(1L, "Chirag","Maru");
+		employeeList.add(employee);
+		employeeList.add(employee2);
 		
 		Mockito.when(employeeService.findAll()).thenReturn(employeeList);
 		Mockito.when(employeeRepository.findAll()).thenReturn(employeeList);

@@ -43,10 +43,10 @@ public class EmployeeController {
 	}
 	
 	@PostMapping("/add")
-	public ResponseEntity<Map<String, Object>> add(@RequestBody Employee Employee) {
+	public ResponseEntity<Map<String, Object>> add(@RequestBody Employee employee) {
 		Map<String, Object> map = new LinkedHashMap<>();
-		log.info("Employee add: {}", Employee);
-		Employee emp = employeeService.save(Employee);
+		log.info("Employee add: {}", employee);
+		Employee emp = employeeService.save(employee);
 		
 		map.put("data", emp);
 		map.put(MESSAGE, "Department is saved successfully");

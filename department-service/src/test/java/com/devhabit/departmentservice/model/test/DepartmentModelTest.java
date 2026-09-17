@@ -33,6 +33,7 @@ class DepartmentModelTest {
 	 */
 	@BeforeEach
 	void setUp() throws Exception {
+        // no setup processing is required
 	}
 
 	/**
@@ -40,6 +41,7 @@ class DepartmentModelTest {
 	 */
 	@AfterEach
 	void tearDown() throws Exception {
+        // no tearDown processing is required
 	}
 
 	
