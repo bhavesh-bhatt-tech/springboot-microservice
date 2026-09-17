@@ -97,7 +97,7 @@ class DepartmentControllerTest {
                         + "        \"employeeList\": []\r\n"
                         + "    }").exists())
 
-                .andExpect(MockMvcResultMatchers.jsonPath("message", "Department is saved successfully").exists())
+                .andExpect(MockMvcResultMatchers.jsonPath("message", "Department is saved successfully").exists());
 
     }
 	@Test
@@ -127,7 +127,6 @@ class DepartmentControllerTest {
 				+ "            \"employeeList\": []\r\n"
 				+ "        }\r\n"
 				+ "    ]").exists())
-		
 		.andExpect(MockMvcResultMatchers.jsonPath("message","Departments retrieved successfully").exists());
 	}
 	
@@ -208,7 +207,7 @@ class DepartmentControllerTest {
                         + "                }\r\n"
                         + "            ]\r\n"
                         + "        }\r\n"
-                        + "    ]").exists())
+                        + "    ]").exists());
 
     }
 	
