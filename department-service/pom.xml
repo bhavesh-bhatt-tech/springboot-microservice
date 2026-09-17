@@ -127,26 +127,7 @@
 			    </configuration>
 			</plugin>
 			
-			<plugin>
-                <groupId>com.google.cloud.tools</groupId>
-                <artifactId>jib-maven-plugin</artifactId>
-                <configuration>
-                    <from>
-                        <image>eclipse-temurin:21-jre</image>
-                    </from>
-                    <to>
-                        <image>registry.hub.docker.com/bkbdocker/${project.artifactId}</image>
-                    </to>
-                </configuration>
-                <executions>
-                    <execution>
-                        <phase>package</phase>
-                        <goals>
-                            <goal>dockerBuild</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
+
 			<plugin>
 			    <groupId>org.jacoco</groupId>
         		<artifactId>jacoco-maven-plugin</artifactId>
