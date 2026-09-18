@@ -28,7 +28,7 @@ jobs:
           image: bkbdocker/config-server
           tags: latest
           registry: docker.io
-          dockerfile: Dockerfile
+          dockerfile: config-server/Dockerfile
           directory: config-server
           enableBuildKit: true
           username: ${{ secrets.DOCKER_USERNAME }}
@@ -40,7 +40,7 @@ jobs:
           image: bkbdocker/service-registry
           tags: latest
           registry: docker.io
-          dockerfile: Dockerfile
+          dockerfile: service-registry/Dockerfile
           directory: service-registry
           enableBuildKit: true
           username: ${{ secrets.DOCKER_USERNAME }}
@@ -52,7 +52,7 @@ jobs:
           image: bkbdocker/gateway-service
           tags: latest
           registry: docker.io
-          dockerfile: Dockerfile
+          dockerfile: gateway-service/Dockerfile
           directory: gateway-service
           enableBuildKit: true
           username: ${{ secrets.DOCKER_USERNAME }}
@@ -64,7 +64,7 @@ jobs:
           image: bkbdocker/department-service
           tags: latest
           registry: docker.io
-          dockerfile: Dockerfile
+          dockerfile: department-service/Dockerfile
           directory: department-service
           enableBuildKit: true
           username: ${{ secrets.DOCKER_USERNAME }}
@@ -76,7 +76,7 @@ jobs:
           image: bkbdocker/employee-service
           tags: latest
           registry: docker.io
-          dockerfile: Dockerfile
+          dockerfile: employee-service/Dockerfile
           directory: employee-service
           enableBuildKit: true
           username: ${{ secrets.DOCKER_USERNAME }}
