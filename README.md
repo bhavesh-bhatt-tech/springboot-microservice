@@ -20,13 +20,6 @@ This repository contains a robust, enterprise-grade demonstration of a microserv
 - **Containerization & CI/CD:** Docker, Docker Compose, GitHub Actions
 
 ---
-
-## Blog
-Step-by-step explanation of project development:
-
-https://www.devhabit.org/post/spring-boot-3-microservice-spring-cloud
-
----
 # SonarQube Scan
 [![SonarQube Cloud](https://sonarcloud.io/images/project_badges/sonarcloud-light.svg)](https://sonarcloud.io/summary/new_code?id=bhavesh-bhatt-tech_springboot-microservice)
 
