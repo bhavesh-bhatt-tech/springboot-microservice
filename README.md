@@ -27,15 +27,29 @@ Step-by-step explanation of project development:
 https://www.devhabit.org/post/spring-boot-3-microservice-spring-cloud
 
 ---
+# SonarQube Scan
+[![SonarQube Cloud](https://sonarcloud.io/images/project_badges/sonarcloud-light.svg)](https://sonarcloud.io/summary/new_code?id=bhavesh-bhatt-tech_springboot-microservice)
 
-# Sonar Cloud
-[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=bhavesh-bhatt-tech_springboot-microservice&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=bhavesh-bhatt-tech_springboot-microservice)
+# Sonar Quality Gate
+[![Quality gate](https://sonarcloud.io/api/project_badges/quality_gate?project=bhavesh-bhatt-tech_springboot-microservice)](https://sonarcloud.io/summary/new_code?id=bhavesh-bhatt-tech_springboot-microservice)
 
 # Github Action 
 ![Github workflow](https://github.com/bhavesh-bhatt-tech/springboot-microservice/actions/workflows/build.yml/badge.svg)
 
 # Code Coverage
-[![Coverage](https://sonarcloud.io/api/project_badges/measure?project=bhavesh-bhatt-tech_springboot-microservice&metric=coverage)]
+[![Coverage](https://sonarcloud.io/api/project_badges/measure?project=bhavesh-bhatt-tech_springboot-microservice&metric=coverage)](https://sonarcloud.io/summary/new_code?id=bhavesh-bhatt-tech_springboot-microservice)
+
+# Reliability Ratings
+[![Reliability Rating](https://sonarcloud.io/api/project_badges/measure?project=bhavesh-bhatt-tech_springboot-microservice&metric=reliability_rating)](https://sonarcloud.io/summary/new_code?id=bhavesh-bhatt-tech_springboot-microservice)
+
+# Technical Debt
+[![Technical Debt](https://sonarcloud.io/api/project_badges/measure?project=bhavesh-bhatt-tech_springboot-microservice&metric=sqale_index)](https://sonarcloud.io/summary/new_code?id=bhavesh-bhatt-tech_springboot-microservice)
+
+# Security Ratings
+[![Security Rating](https://sonarcloud.io/api/project_badges/measure?project=bhavesh-bhatt-tech_springboot-microservice&metric=security_rating)](https://sonarcloud.io/summary/new_code?id=bhavesh-bhatt-tech_springboot-microservice)
+
+# Maintainability Ratings
+[![Maintainability Rating](https://sonarcloud.io/api/project_badges/measure?project=bhavesh-bhatt-tech_springboot-microservice&metric=sqale_rating)](https://sonarcloud.io/summary/new_code?id=bhavesh-bhatt-tech_springboot-microservice)
 
 # Bug 
 [![Bugs](https://sonarcloud.io/api/project_badges/measure?project=bhavesh-bhatt-tech_springboot-microservice&metric=bugs)](https://sonarcloud.io/summary/new_code?id=bhavesh-bhatt-tech_springboot-microservice)
