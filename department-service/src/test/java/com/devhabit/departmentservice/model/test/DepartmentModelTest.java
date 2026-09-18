@@ -4,7 +4,7 @@
 package com.devhabit.departmentservice.model.test;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.when;
 
 import java.util.ArrayList;
@@ -33,6 +33,7 @@ class DepartmentModelTest {
 	 */
 	@BeforeEach
 	void setUp() throws Exception {
+        // no setup processing is required
 	}
 
 	/**
@@ -40,6 +41,7 @@ class DepartmentModelTest {
 	 */
 	@AfterEach
 	void tearDown() throws Exception {
+        // no tearDown processing is required
 	}
 
 	

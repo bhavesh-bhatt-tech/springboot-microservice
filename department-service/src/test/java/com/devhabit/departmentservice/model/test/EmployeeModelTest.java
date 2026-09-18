@@ -3,8 +3,8 @@
  */
 package com.devhabit.departmentservice.model.test;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -22,6 +22,7 @@ class EmployeeModelTest {
 	 */
 	@BeforeEach
 	void setUp() throws Exception {
+        //no setUp processing is required
 	}
 
 	/**
@@ -29,6 +30,8 @@ class EmployeeModelTest {
 	 */
 	@AfterEach
 	void tearDown() throws Exception {
+
+        //no tearDown processing is required
 	}
 
 	@Test

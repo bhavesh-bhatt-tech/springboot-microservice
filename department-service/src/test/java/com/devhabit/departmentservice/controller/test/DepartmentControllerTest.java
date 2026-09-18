@@ -3,6 +3,7 @@
  */
 package com.devhabit.departmentservice.controller.test;
 
+import static org.mockito.Mockito.*;
 import static org.mockito.Mockito.when;
 
 import java.util.ArrayList;
@@ -24,6 +25,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.ResultActions;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
@@ -66,8 +68,8 @@ class DepartmentControllerTest {
 		Department department = new Department(1, "HR");
 		//Optional<Object> dept = Optional.of((Object) department);
 		departmentRepository.add(department);
-		Mockito.when(departmentService.findById(1L)).thenReturn((department));
-		Mockito.when(departmentRepository.findById(1L)).thenReturn(Optional.of(department));
+		when(departmentService.findById(1L)).thenReturn((department));
+		when(departmentRepository.findById(1L)).thenReturn(Optional.of(department));
 		
 		mockMvc.perform(MockMvcRequestBuilders.get("/department/{id}", 1L)
 				.accept(MediaType.APPLICATION_JSON))
@@ -80,24 +82,24 @@ class DepartmentControllerTest {
 		log.info("addDepartmentTest started");
 
 		Department department = new Department(1, "HR");				
-		Mockito.when(departmentService.save(department)).thenReturn(department);
-		Mockito.when(departmentRepository.add(department)).thenReturn(department);
-		mockMvc.perform(MockMvcRequestBuilders.post("/department/add")
-				.contentType(MediaType.APPLICATION_JSON)
-				.content("{\r\n"
-						+ "    \"id\" : \"1\",\r\n"
-						+ "    \"name\" : \"HR\"\r\n"
-						+ "}")).andExpect(MockMvcResultMatchers.status().isOk())
-		
-				.andExpect(MockMvcResultMatchers.jsonPath("data","{\r\n"
-								+ "        \"id\": 1,\r\n"
-								+ "        \"name\": \"HR\",\r\n"
-								+ "        \"employeeList\": []\r\n"
-								+ "    }").exists())
-				
-				.andExpect(MockMvcResultMatchers.jsonPath("message","Department is saved successfully").exists());
+		when(departmentService.save(department)).thenReturn(department);
+		when(departmentRepository.add(department)).thenReturn(department);
+        mockMvc.perform(MockMvcRequestBuilders.post("/department/add")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content("{\r\n"
+                                + "    \"id\" : \"1\",\r\n"
+                                + "    \"name\" : \"HR\"\r\n"
+                                + "}")).andExpect(MockMvcResultMatchers.status().isOk())
 
-	}
+                .andExpect(MockMvcResultMatchers.jsonPath("data", "{\r\n"
+                        + "        \"id\": 1,\r\n"
+                        + "        \"name\": \"HR\",\r\n"
+                        + "        \"employeeList\": []\r\n"
+                        + "    }").exists())
+
+                .andExpect(MockMvcResultMatchers.jsonPath("message", "Department is saved successfully").exists());
+
+    }
 	@Test
 	void findAllTest() throws Exception {
 		log.info("findAllTest started");
@@ -106,8 +108,8 @@ class DepartmentControllerTest {
 		departmentList.add(department);
 		departmentList.add(department2);
 		
-		Mockito.when(departmentService.findAll()).thenReturn(departmentList);
-		Mockito.when(departmentRepository.findAll()).thenReturn(departmentList);
+		when(departmentService.findAll()).thenReturn(departmentList);
+		when(departmentRepository.findAll()).thenReturn(departmentList);
 		
 		mockMvc.perform(MockMvcRequestBuilders.get("/department/all")
 				.contentType(MediaType.APPLICATION_JSON)
@@ -125,7 +127,6 @@ class DepartmentControllerTest {
 				+ "            \"employeeList\": []\r\n"
 				+ "        }\r\n"
 				+ "    ]").exists())
-		
 		.andExpect(MockMvcResultMatchers.jsonPath("message","Departments retrieved successfully").exists());
 	}
 	
@@ -161,54 +162,54 @@ class DepartmentControllerTest {
 		
 		map1.put("data", dept1EmployeeList);
 		map2.put("data", dept2EmployeeList);
-		Mockito.when(departmentService.findAllDepartmentEmployees()).thenReturn(reqDeptList);
+		when(departmentService.findAllDepartmentEmployees()).thenReturn(reqDeptList);
 		ResponseEntity<Map<String, Object>> response1 = new ResponseEntity(map1,HttpStatus.OK);
 		ResponseEntity<Map<String, Object>> response2 = new ResponseEntity(map2,HttpStatus.OK);
 		
-		Mockito.when(departmentRepository.findAll()).thenReturn(reqDeptList);
+		when(departmentRepository.findAll()).thenReturn(reqDeptList);
 		when(employeeClient.findByDepartmentId(1L)).thenReturn(response1);			
 		when(employeeClient.findByDepartmentId(2L)).thenReturn(response2);
-		
-		
-		mockMvc.perform(MockMvcRequestBuilders.get("/department/all/department-employee")
-				.contentType(MediaType.APPLICATION_JSON)
-				).andExpect(MockMvcResultMatchers.status().isOk())
-		.andExpect(MockMvcResultMatchers.jsonPath("data","{\r\n"
-				+ "            \"id\": 1,\r\n"
-				+ "            \"name\": \"HR\",\r\n"
-				+ "            \"employeeList\": [\r\n"
-				+ "                {\r\n"
-				+ "                    \"id\": 1,\r\n"
-				+ "                    \"departmentId\": 1,\r\n"
-				+ "                    \"firstName\": \"Sumeet\",\r\n"
-				+ "                    \"lastName\": \"Shah\",\r\n"
-				+ "                    \"dateOfBirth\": \"05-Nov-1984\"\r\n"
-				+ "                },\r\n"
-				+ "                {\r\n"
-				+ "                    \"id\": 1,\r\n"
-				+ "                    \"departmentId\": 1,\r\n"
-				+ "                    \"firstName\": \"Chirag\",\r\n"
-				+ "                    \"lastName\": \"Maru\",\r\n"
-				+ "                    \"dateOfBirth\": \"15-Sep-1986\"\r\n"
-				+ "                }\r\n"
-				+ "            ]\r\n"
-				+ "        },\r\n"
-				+ "        {\r\n"
-				+ "            \"id\": 2,\r\n"
-				+ "            \"name\": \"Account\",\r\n"
-				+ "            \"employeeList\": [\r\n"
-				+ "                {\r\n"
-				+ "                    \"id\": 3,\r\n"
-				+ "                    \"departmentId\": 2,\r\n"
-				+ "                    \"firstName\": \"Vivek\",\r\n"
-				+ "                    \"lastName\": \"Taneja\",\r\n"
-				+ "                    \"dateOfBirth\": \"07-Jul-1983\"\r\n"
-				+ "                }\r\n"
-				+ "            ]\r\n"
-				+ "        }\r\n"
-				+ "    ]").exists());
-		
-	}
+
+
+        mockMvc.perform(MockMvcRequestBuilders.get("/department/all/department-employee")
+                        .contentType(MediaType.APPLICATION_JSON)
+                ).andExpect(MockMvcResultMatchers.status().isOk())
+                .andExpect(MockMvcResultMatchers.jsonPath("data", "{\r\n"
+                        + "            \"id\": 1,\r\n"
+                        + "            \"name\": \"HR\",\r\n"
+                        + "            \"employeeList\": [\r\n"
+                        + "                {\r\n"
+                        + "                    \"id\": 1,\r\n"
+                        + "                    \"departmentId\": 1,\r\n"
+                        + "                    \"firstName\": \"Sumeet\",\r\n"
+                        + "                    \"lastName\": \"Shah\",\r\n"
+                        + "                    \"dateOfBirth\": \"05-Nov-1984\"\r\n"
+                        + "                },\r\n"
+                        + "                {\r\n"
+                        + "                    \"id\": 1,\r\n"
+                        + "                    \"departmentId\": 1,\r\n"
+                        + "                    \"firstName\": \"Chirag\",\r\n"
+                        + "                    \"lastName\": \"Maru\",\r\n"
+                        + "                    \"dateOfBirth\": \"15-Sep-1986\"\r\n"
+                        + "                }\r\n"
+                        + "            ]\r\n"
+                        + "        },\r\n"
+                        + "        {\r\n"
+                        + "            \"id\": 2,\r\n"
+                        + "            \"name\": \"Account\",\r\n"
+                        + "            \"employeeList\": [\r\n"
+                        + "                {\r\n"
+                        + "                    \"id\": 3,\r\n"
+                        + "                    \"departmentId\": 2,\r\n"
+                        + "                    \"firstName\": \"Vivek\",\r\n"
+                        + "                    \"lastName\": \"Taneja\",\r\n"
+                        + "                    \"dateOfBirth\": \"07-Jul-1983\"\r\n"
+                        + "                }\r\n"
+                        + "            ]\r\n"
+                        + "        }\r\n"
+                        + "    ]").exists());
+
+    }
 	
 	private List<Department> loadDepartments() {
 		log.info("loadDepartments started");

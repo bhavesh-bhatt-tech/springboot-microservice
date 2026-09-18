@@ -1,6 +1,33 @@
+﻿# Spring Boot 3 Microservices with Spring Cloud
 
-# Spring boot 3 microservice with Spring cloud
-The project is microservice development using spring boot 3 along with below components
+## Project Description
+This repository contains a robust, enterprise-grade demonstration of a microservice architecture built using **Spring Boot 3** and **Spring Cloud**. The project implements core microservice patterns including centralized configuration management, dynamic service discovery and registration, API gateway routing, non-blocking inter-service communication with Spring WebClient, and distributed tracing. It consists of multiple independent services (`config-server`, `service-registry`, `gateway-service`, `employee-service`, and `department-service`) designed to work seamlessly together.
+
+---
+
+## Technology Stack
+- **Core Framework:** Spring Boot 3.2.1 (Java 17)
+- **Microservices & Cloud:** Spring Cloud 2023.0.0
+  - **Service Discovery:** Netflix Eureka Server & Client
+  - **Configuration Management:** Spring Cloud Config Server (Native Profile)
+  - **API Gateway:** Spring Cloud Gateway
+- **Inter-Service Communication:** Spring WebClient (Reactive & Fluent API)
+- **Observability & Distributed Tracing:** Micrometer Tracing (Brave) & Zipkin
+- **Testing & Quality Assurance:** 
+  - JUnit 5 & Mockito
+  - JaCoCo (Code Coverage)
+  - SonarCloud (Static Code Analysis)
+- **Containerization & CI/CD:** Docker, Docker Compose, GitHub Actions
+
+---
+
+## Blog
+Step-by-step explanation of project development:
+
+https://www.devhabit.org/post/spring-boot-3-microservice-spring-cloud
+
+---
+
 # Sonar Cloud
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=bhavesh-bhatt-tech_springboot-microservice&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=bhavesh-bhatt-tech_springboot-microservice)
 
@@ -105,12 +132,8 @@ Go to the respective project directory in each project and execute below command
   GET /department/all/department-employee
 ```
 
-
 ## Code Coverage
 Run below commands to generate code coverage reports
+```bash
 clean jacoco:prepare-agent install jacoco:report
-
-## Blog
-step by step explation of project development
-
-https://www.devhabit.org/post/spring-boot-3-microservice-spring-cloud
+```
